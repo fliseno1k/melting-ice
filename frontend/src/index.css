@@ -1,13 +1,88 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --color-black-hex: #000000;
+  --color-cod-gray-hex: #111111;
+  --color-mine-shaft-hex: #232323;
+  --color-mine-shaft-2-hex: #343434;
+  --color-tundora-hex: #464646;
+  --color-scorpion-hex: #575757;
+  --color-dove-gray-hex: #696969;
+  --color-boulder-hex: #7A7A7A;
+  --color-cornflower-blue: #5e60ce;
+  --color-havelock-blue: #5390d9;
+
+  --basic-background: rgb(17,17,17);
+  --basic-gradient: linear-gradient(141deg, rgba(17,17,17,1) 0%, rgba(33,37,41,1) 60%);
+  --gradient-blue: linear-gradient(141deg, rgba(67,97,238,1) 0%, rgba(94,96,206,1) 100%);
+  --gradient-violet: linear-gradient(141deg, rgba(255,0,215,1) 0%, rgba(39,0,130,1) 100%);
+
+
+  --basic-shadow: 0px 0px 10px 0px rgba(17, 17, 17, 0.4);
+
+  --border-radius-sm: 5px;
+
+  --text-primary: #f8f9fa;
+  --text-secondary: #6c757d;
+
+  --padding-sm: 10px;
+  --padding-md: 16px;
+
+  --modal-z: 100;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overscroll-behavior: none;
+  font-size: 16px ;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  background: var(--color-black-hex);
+}
+
+#root {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  border: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.action-button {
+  width: 100%;
+  height: 40px;
+  background: var(--color-cornflower-blue);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--basic-shadow);
+  transition: .3s ease;
+}
+
+.action-button:hover {
+  background: var(--color-havelock-blue);
 }
