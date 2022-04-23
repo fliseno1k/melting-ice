@@ -1,11 +1,15 @@
 import './App.css';
 
-import Background from './shared/Background/Background';
+// import Background from './shared/Background/Background';
+// import Login from './Login/Login';
+import Gallery from './Gallery/Gallery';
 
 function App() {
   	return (
 		<div className="app">
-			<Background />
+			{/* <Background /> */}
+			{/* <Login /> */}
+			<Gallery />
 		</div>
   	);
 }

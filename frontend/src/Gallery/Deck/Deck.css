@@ -1,0 +1,15 @@
+.deck {
+    position: relative;
+    margin: 40px 0;
+    display: flex;
+}
+
+
+.card-wrapper {
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    width: calc(100% - var(--padding-sm) * 2);
+    aspect-ratio: 3/5;
+    touch-action: none;
+}

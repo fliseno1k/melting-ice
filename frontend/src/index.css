@@ -1,24 +1,21 @@
 :root {
-  --color-black-hex: #000000;
-  --color-cod-gray-hex: #111111;
-  --color-mine-shaft-hex: #232323;
-  --color-mine-shaft-2-hex: #343434;
-  --color-tundora-hex: #464646;
-  --color-scorpion-hex: #575757;
-  --color-dove-gray-hex: #696969;
-  --color-boulder-hex: #7A7A7A;
-  --color-cornflower-blue: #5e60ce;
-  --color-havelock-blue: #5390d9;
-
-  --basic-background: rgb(17,17,17);
-  --basic-gradient: linear-gradient(141deg, rgba(17,17,17,1) 0%, rgba(33,37,41,1) 60%);
-  --gradient-blue: linear-gradient(141deg, rgba(67,97,238,1) 0%, rgba(94,96,206,1) 100%);
-  --gradient-violet: linear-gradient(141deg, rgba(255,0,215,1) 0%, rgba(39,0,130,1) 100%);
-
-
-  --basic-shadow: 0px 0px 10px 0px rgba(17, 17, 17, 0.4);
+  --color-white: #fff;
+  --color-black: #000;
+  --color-old-lace: #FDF6EC;
+  --color-merino: #F3E9DD;
+  --color-sorrell-brown: #CEAB93;
+  --color-heliotrope: #B983FF;
+  /* --basic-shadow: 0px 0px 10px 0px rgba(17, 17, 17, 0.4); */
 
   --border-radius-sm: 5px;
+  --border-radius-normal: calc(var(--border-radius-sm) * 2);
+
+
+  --app-background: linear-gradient(184deg, rgba(246,230,228,1) 0%, rgba(249,249,249,1) 100%);
+  --card-background: linear-gradient(325deg, rgba(237,255,236,1) 0%, rgba(254,245,237,1) 100%);
+
+  --shadow: 0px 0px 8px 0px rgba(197, 197, 197, 0.3);
+
 
   --text-primary: #f8f9fa;
   --text-secondary: #6c757d;
@@ -27,6 +24,10 @@
   --padding-md: 16px;
 
   --modal-z: 100;
+
+  --text-white: var(--color-white);
+  --text-dark: var(--color-black);
+  --text-white-background: var(--color-heliotrope);
 }
 
 * {
@@ -42,9 +43,9 @@ body {
   position: relative;
   overscroll-behavior: none;
   font-size: 16px ;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   overflow: hidden;
-  background: var(--color-black-hex);
+  background: var(--app-background);
 }
 
 #root {

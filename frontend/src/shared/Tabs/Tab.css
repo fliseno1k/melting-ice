@@ -1,0 +1,15 @@
+.tab {
+    width: 50%;
+    height: 36px;
+    border-radius: var(--border-radius-normal);
+    background: transparent;
+    font-size: 14px;
+    font-weight: normal;
+    transition: .3s ease;
+    color: var(--text-white-background);
+}
+
+.tab.active {
+    color: var(--text-white);
+    background: var(--color-heliotrope);
+}
