@@ -1,0 +1,101 @@
+div[data-rsbs-overlay] {
+    border-top-left-radius: calc(var(--padding-md) * 2);
+    border-top-right-radius: calc(var(--padding-md) * 2);
+    box-shadow: var(--shadow) !important;
+    background: var(--card-background);
+    overflow: hidden;
+}
+
+div[data-rsbs-header] {
+    padding: 0;
+    border-top-left-radius: calc(var(--padding-md) * 2);
+    border-top-right-radius: calc(var(--padding-md) * 2);
+    box-shadow: none;
+}
+
+div[data-rsbs-header]:before {
+    z-index: 2;
+}
+
+.sheet__header {
+    position: relative;
+    background: var(--color-white);
+    border-bottom-left-radius: calc(var(--padding-md) * 2);
+    border-bottom-right-radius: calc(var(--padding-md) * 2);
+    box-shadow: var(--shadow);
+    padding-bottom: 20px;
+}
+
+.sheet__content {
+    padding: var(--padding-sm) 0;
+}
+
+.sheet__title {
+    margin-top: 10px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sheet__like {
+    position: absolute;
+    right: 22px;
+    bottom: -22px;
+    flex: none;
+}
+
+.sheet__description {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: calc(1.8 * 1em);
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.sheet__description p:not(:last-child),
+.sheet__description span:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.sheet__meta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.sheet__meta__single {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    margin-right: 1em;
+    color: var(--text-secondary);
+}
+
+.sheet__meta__single_left {
+    justify-self: flex-start;
+}
+
+.sheet__meta__single_right {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.sheet__meta__single svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+
+.sheet__background {
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sheet__background svg {
+    width: 200px;
+    height: auto;
+    stroke: var(--color-white);
+    opacity: 0.1;
+}

@@ -1,0 +1,13 @@
+.tabs-group {
+    flex: none;
+    position: relative;
+    width: 100%;
+    padding: var(--padding-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--card-background);
+    border: 2px solid var(--color-white);
+    border-radius: var(--border-radius-normal);
+    box-shadow: var(--shadow);
+}
