@@ -6,7 +6,7 @@ const User = require("../models/User");
 
 const login = async (req, res) => {
     const { password } = req.body;
-
+    
     try {
         const user = await User.findOne({ role: "admin" }).exec();
 
@@ -28,8 +28,6 @@ const login = async (req, res) => {
         const payload = {
             user: user._id.valueOf()
         };
-
-        console.log(payload);
 
         jwt.sign(payload, "wonder", { expiresIn: 3600 }, (err, token) => {
             if (err) throw err;

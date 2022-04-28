@@ -39,9 +39,14 @@ getRandomCompliment = (req, res) => {
                 });
             }
 
+            const { text, tag } = result[0];
+
             res.status(201).json({
                 success: true, 
-                text: result[0].text,
+                compliment: {
+                    text,
+                    tag
+                },
                 message: 'Compliment found'
             });
         });

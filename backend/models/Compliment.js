@@ -1,11 +1,17 @@
 const mongoose = require('mongoose');
-const ComplimentTag = require('./ComplimentTag').schema;
 
 
 const Compliment = new mongoose.Schema(
     {
-        text: { type: String, required: true },
-        // tag: ComplimentTag
+        tag: {
+            type: String, 
+            enum: ["love", "motivation", "wishes"],
+            default: "love"
+        },
+        text: {
+            type: String,
+            required: true
+        }
     },
     { timestamps: true }
 );
