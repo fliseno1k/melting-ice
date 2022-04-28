@@ -16,4 +16,4 @@ const Compliment = new mongoose.Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model('Compliments', Compliment);
+module.exports = mongoose.model("compliment", Compliment);
