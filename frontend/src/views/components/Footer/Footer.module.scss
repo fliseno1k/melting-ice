@@ -1,0 +1,31 @@
+.footer {
+    flex: none;
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: var(--padding-md);
+    background: var(--card-background);
+    border-radius: var(--border-radius-normal);
+    border: 2px solid var(--color-white);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+
+    &__content {
+        position: relative;
+        font-size: 20px;
+        font-weight: normal;
+        font-family: 'Pacifico', Arial, Helvetica, sans-serif;
+        color: var(--text-secondary);
+        text-align: center;
+        z-index: 1;
+    }
+
+    &__background {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        height: auto;
+        z-index: 0;
+    }
+}

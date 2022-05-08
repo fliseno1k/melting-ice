@@ -1,0 +1,97 @@
+.header {
+    flex: none;
+    padding: calc(var(--padding-sm) / 2);
+    background: var(--card-background);
+    border-radius: var(--border-radius-normal);
+    border: 2px solid var(--color-white);
+    box-shadow: var(--shadow);
+
+    &__container {
+        position: relative;
+        width: calc(100% + var(--padding-sm));
+        left: calc(-1 * var(--padding-sm) / 2);
+    }
+
+    &__navigation {
+        height: auto;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: visible;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        &__wrapper {
+            &:before, 
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                display: block;
+                width: var(--padding-sm);
+                z-index: 2;
+            }
+
+            &::after {
+                left: 0;
+                background: linear-gradient(-90deg,transparent, rgba(237,255,236,1));
+            }
+            
+            &:before {
+                right: 0;
+                background: linear-gradient(90deg,transparent, rgba(237,255,236,1));
+            }
+        }
+
+        &__container {
+            display: flex;
+            flex-wrap: nowrap;
+            height: auto;
+            padding: 0 var(--padding-sm);
+            column-gap: 0.5rem;
+        }
+
+        &__item {
+            padding: var(--padding-sm);
+            border-radius: var(--border-radius-normal);
+            color: var(--text-secondary);
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--color-white);
+            transition: .3s ease;
+
+            &_active {
+                background: var(--color-heliotrope);
+                color: var(--color-white);
+            }
+        }
+
+        &__control {
+            position: absolute;
+            top: 50%;
+            padding: 4px;
+            box-shadow: var(--shadow);
+            background: var(--color-white);
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+            transform: translateY(-50%);
+            z-index: 4;
+
+            &_left {
+                left: -14px;
+            }
+
+            &_right {
+                right: -14px;
+            }
+
+            & svg {
+                width: 16px;
+                height: 16px;
+                fill: var(--text-secondary);
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: var(--padding-md);
+    z-index: 1;
+}

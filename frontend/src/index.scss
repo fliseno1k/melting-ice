@@ -1,0 +1,133 @@
+@import './styles/_reset.scss';
+@import './styles/_variables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overscroll-behavior: none;
+  font-size: 16px ;
+  font-family: 'Roboto', Arial, sans-serif;
+  overflow-x: hidden;
+  background: var(--app-background);
+}
+
+#root {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  border: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.action-button {
+  width: 100%;
+  height: 40px;
+  background: var(--color-heliotrope);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--basic-shadow);
+  transition: .3s ease;
+}
+
+.loader {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-white);
+    background: -moz-linear-gradient(left, var(--color-white) 10%, rgba(255, 255, 255, 0) 42%);
+    background: -webkit-linear-gradient(left, var(--color-white) 10%, rgba(255, 255, 255, 0) 42%);
+    background: -o-linear-gradient(left, var(--color-white) 10%, rgba(255, 255, 255, 0) 42%);
+    background: -ms-linear-gradient(left, var(--color-white) 10%, rgba(255, 255, 255, 0) 42%);
+    background: linear-gradient(to right, var(--color-white) 10%, rgba(255, 255, 255, 0) 42%);
+    position: relative;
+    -webkit-animation: load3 1.4s infinite linear;
+    animation: load3 1.4s infinite linear;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.loader:before {
+	width: 50%;
+	height: 50%;
+	background: var(--color-white);
+	border-radius: 100% 0 0 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: '';
+}
+
+.loader:after {
+	background: var(--color-heliotrope);
+	width: 75%;
+	height: 75%;
+	border-radius: 50%;
+	content: '';
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+@-webkit-keyframes load3 {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes load3 {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+
+.skeleton {
+  display: block;
+	background-color: #e2e5e7;
+	background-image:linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+	background-size: 10% 100%; 
+	background-repeat: no-repeat;
+	background-position: left 10% top 0; 
+	animation: shine 1s ease infinite;
+}
+
+@keyframes shine {
+	to {
+		background-position: right -10% top 0;
+	}
+}

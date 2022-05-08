@@ -1,0 +1,103 @@
+.login {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+
+    &__entry {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;    
+    }
+
+    &__overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: var(--modal-z);
+        background: rgba(var(--app-background), 0.5);
+        backdrop-filter: blur(6px);
+    }
+
+    &__signinForm {
+       display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px 16px 30px;
+        background: var(--card-background);
+        border-radius: var(--border-radius-sm);
+        color: var(--text-secondary);
+        box-shadow: var(--shadow);
+        border: 2px;
+
+        & label {
+            display: flex;
+            column-gap: 1em;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        & input {
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0;
+        }
+
+        &__keyWrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        &__keyIndicator {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            column-gap: 16px;
+        }
+
+        &__keyChar {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: var(--border-radius-sm);
+            background: var(--color-cod-gray-hex);
+            border: 2px solid var(--color-white);
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &_focused {
+                border: 2px solid var(--color-sorrell-brown);
+            }
+
+            & svg {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                color: var(--text-secondary);
+            }
+        }
+
+        &__notation {
+            margin-top: 5px;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+    }
+}

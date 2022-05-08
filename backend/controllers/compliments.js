@@ -24,7 +24,7 @@ postCompliment = (req, res) => {
             success: true, 
             id: compliment._id,
             message: 'Compliment created'
-        })
+        });
     });
 };
 

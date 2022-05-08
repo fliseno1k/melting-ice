@@ -1,0 +1,32 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: var(--padding-md);
+
+    &__description {
+        position: relative;
+        margin-bottom: var(--padding-md);
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 30px;
+        font-family: 'Pacifico', Arial, Helvetica, sans-serif;
+        color: var(--text-secondary);
+    }
+
+    &__text {
+        position: relative;
+        z-index: 1;
+    }
+
+    &__shadow {
+        position: absolute;
+        top: -0.15em;
+        left: -0.15em;
+        width: 100%;
+        font-size: 3em;
+        opacity: 0.1;
+        z-index: 0;
+    }
+}

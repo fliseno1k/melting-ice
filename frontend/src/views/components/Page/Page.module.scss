@@ -1,0 +1,9 @@
+.page {
+    &__body {
+        flex-grow: 1;
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin: 20px 0;
+    }
+}

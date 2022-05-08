@@ -1,0 +1,81 @@
+.compliment {
+    position: relative;
+    width: 100%;    
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid var(--color-white);
+        background: var(--card-background);
+        z-index: 2;
+
+        &__skeleton {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        & svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-secondary);
+        }
+    }
+
+    &__container {
+        position: relative;
+        width: calc(100% - 10px);
+        margin-left: 10px;
+        padding: calc(var(--padding-md) * 1.5);
+        box-shadow: var(--shadow);
+        border-radius: var(--border-radius-normal);
+        border: 2px solid var(--color-white);
+        background: var(--card-background);
+        font-size: 15px;
+        line-height: 18px;
+        color: var(--text-secondary);
+        z-index: 1;
+    }
+
+    &__pseudoContainer {
+        position: absolute;
+        top: 0px;
+        left: 0;
+        width: 90%;
+        height: 100%;
+        margin-left: 10px;
+        border-radius: var(--border-radius-normal);
+        border: 2px solid var(--color-white);
+        background: var(--card-background);
+        transform: rotateZ(-2deg);
+        transform-origin: top left;
+    }
+
+    &__text {
+        &__skeleton {
+            height: 0.8em;
+            display: block;
+            border-radius: 8px;
+            margin: 0.2em 0;
+        }
+
+        &_large {
+            width: 100%;
+        }
+
+        &_medium {
+            width: 75%;
+        }
+
+        &_short {
+            width: 50%;
+        }
+    }
+}

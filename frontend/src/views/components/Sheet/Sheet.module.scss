@@ -1,0 +1,103 @@
+div[data-rsbs-overlay] {
+    border-top-left-radius: calc(var(--padding-md) * 2);
+    border-top-right-radius: calc(var(--padding-md) * 2);
+    box-shadow: var(--shadow) !important;
+    background: var(--card-background);
+    overflow: hidden;
+}
+
+div[data-rsbs-header] {
+    padding: 0;
+    border-top-left-radius: calc(var(--padding-md) * 2);
+    border-top-right-radius: calc(var(--padding-md) * 2);
+    box-shadow: none;
+}
+
+div[data-rsbs-header]:before {
+    z-index: 2;
+}
+
+.sheet {
+    &__header {
+        position: relative;
+        background: var(--color-white);
+        border-bottom-left-radius: calc(var(--padding-md) * 2);
+        border-bottom-right-radius: calc(var(--padding-md) * 2);
+        box-shadow: var(--shadow);
+        padding-bottom: 20px;
+    }
+
+    &__content {
+        padding: var(--padding-sm) 0;
+    }
+
+    &__title {
+        margin-top: 10px;
+        text-align: left;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    &__like {
+        position: absolute;
+        right: 22px;
+        bottom: -22px;
+        flex: none;
+    }
+
+    &__description {
+        font-size: 14px;
+        font-weight: normal;
+        line-height: calc(1.8 * 1em);
+        font-family: 'Roboto', Arial, sans-serif;
+
+        & p:not(:last-child),
+        & span:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__meta {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-top: 1em;
+
+        &__single {
+            display: inline-flex;
+            align-items: center;
+            font-size: 12px;
+            margin-right: 1em;
+            color: var(--text-secondary);
+
+            &_left {
+                justify-self: flex-start;
+            }
+
+            &_right {
+                margin-left: auto;
+                margin-right: 0;
+            }
+
+            & svg {
+                width: 20px;
+                height: 20px;
+                margin-right: 6px;
+            }
+        }
+    }
+
+    &__background {
+        position: absolute;
+        right: -100px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        & svg {
+            width: 200px;
+            height: auto;
+            stroke: var(--color-white);
+            opacity: 0.1;
+        }
+    }
+}

@@ -5,15 +5,18 @@ const servicePrefix = '/auth';
 
 export const AuthService = {
     async login(password) {
-        return axiosInstance.post(`/${servicePrefix}/login`, { 
+        return axiosInstance.post(`${servicePrefix}/login`, { 
             password 
         });
     },
-    async checkAuthorization(token) {
-        return axiosInstance.get(`/${servicePrefix}/user`, {
-            headers: {
-                token
-            }
+    async refreshRequest() {
+        return axiosInstance.get(`${servicePrefix}/refresh`, {
+            refreshToken: localStorage.getItem("jwt_refresh")
+        });
+    },
+    async checkAuthorization() {
+        return axiosInstance.get(`${servicePrefix}/user`, {
+            token: localStorage.getItem("jwt")
         });
     }
 };

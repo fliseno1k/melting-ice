@@ -1,67 +1,47 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require("../models/User");
+const authService = require('../services/auth.service');
 
 
-const login = async (req, res) => {
-    const { password } = req.body;
-    
+const login = async (req, res, next) => {
     try {
-        const user = await User.findOne({ role: "admin" }).exec();
+        const { password } = req.body;
+        const tokens = await authService.login(password);
 
-        if (!user) {
-            return res.status(400).json({
-                success: false, 
-                message: "User not found"
-            });
-        }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).json({
-                success: false, 
-                message: "Incorrect password"
-            });
-        }
-
-        const payload = {
-            user: user._id.valueOf()
-        };
-
-        jwt.sign(payload, "wonder", { expiresIn: 3600 }, (err, token) => {
-            if (err) throw err;
-
-            res.status(200).json({
-                success: true,
-                message: "Successfuly signin",
-                token
-            });
-        });
+        return res
+            .status(200)
+            .cookie("refreshToken", tokens.refreshToken, { maxAge: process.env.REFRESH_TOKEN_LIFE, httpOnly: true })
+            .json(tokens);
 
     } catch(e) {
-        return res.status(500).json({
-            success: false,
-            message: "Server error"
-        });
+        next(e);
+    }
+};
+
+const refresh = async (req, res, next) => {
+    try {
+        const { refreshToken } = req.cookies;
+        const tokens = await authService.refresh(refreshToken);
+
+        return res
+            .status(200)
+            .cookie("refreshToken", tokens.refreshToken, { maxAge: process.env.REFRESH_TOKEN_LIFE, httpOnly: true })
+            .json(tokens);
+
+    } catch(e) {
+        next(e);
     }
 };
 
 const createUser = async (req, res) => {
-    const salt = await bcrypt.genSalt();
-    const password = await bcrypt.hash("чудо", salt);
-
-    const user = new User({
-        role: "admin",
-        password
-    });
-
-    await user.save();
-
-    return res.status(200).json({
-        success: true, 
-        message: "Default user created"
-    });
+    try {
+        const user = authService.createUser();
+        return res
+            .status(200)
+            .json(user);
+    } catch(e) {
+        next(e);
+    }
 };
 
 const getUser = async (req, res) => {
@@ -84,6 +64,7 @@ const getUser = async (req, res) => {
 
 module.exports = {
     login,
+    refresh,
     createUser,
-    getUser
+    getUser,
 };

@@ -1,0 +1,15 @@
+.deck {
+    position: relative;
+    left: calc(-1 * VAR(--padding-md));
+    width: calc(100% + var(--padding-md) * 2);
+    height: 100%;
+    display: flex;
+
+    & :global(.swiper) {
+        padding: 0 calc(var(--padding-md) * 2);
+    }
+
+    & :global(.swiper-slide) {
+        width: 100%;
+    }
+}
