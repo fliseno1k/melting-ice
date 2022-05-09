@@ -5,6 +5,8 @@
     border-radius: var(--border-radius-normal);
     border: 2px solid var(--color-white);
     box-shadow: var(--shadow);
+    position: relative;
+    z-index: 1;
 
     &__container {
         position: relative;

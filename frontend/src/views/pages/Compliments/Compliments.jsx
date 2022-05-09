@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { ComplimentsService } from '../../../services/compliments.service';
-import { AuthContext } from '../../../context/AuthProvider';
 
-import { Navigate } from 'react-router-dom';
 import { BaseCompliment, SkeletonCompliment } from '../../components/Compliment';
 import Button from '../../components/Button/Button';
 import Page from '../../components/Page/Page';
@@ -13,7 +11,6 @@ import s from './Compliments.module.scss';
 
 
 const Compliments = () => {
-    const { isAuhthenticated } = useContext(AuthContext);
     const [loading, setLoading] = useState(true);
     const { 
         data, 
@@ -29,7 +26,7 @@ const Compliments = () => {
         setTimeout(() => setLoading(isFetching), isFetching ? 0 : 2000);            
     }, [isFetching]);
 
-    return isAuhthenticated ? (
+    return (
         <Page>
             <Section text="Глоточки хорошего настроения" shadow="02">
                 <div className={s.compliments}>
@@ -46,8 +43,6 @@ const Compliments = () => {
                 </div>
             </Section>
         </Page>
-    ) : (
-        <Navigate to="/" />
     );
 };
 

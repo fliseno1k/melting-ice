@@ -9,6 +9,7 @@
     border: 2px solid var(--color-white);
     box-shadow: var(--shadow);
     overflow: hidden;
+    z-index: 1;
 
     &__content {
         position: relative;

@@ -8,7 +8,9 @@ import Story from './views/pages/Story/Story';
 import Gallery from './views/pages/Gallery/Gallery';
 import Compliments from './views/pages/Compliments/Compliments';
 import Login from './views/pages/Login/Login';
-import AuthProvider from './context/AuthProvider';
+import { AuthProvider } from './context/AuthProvider';
+import Background from './views/components/Background/Background';
+import RequireAuth from './views/hoc/RequireAuth';
 
 import './App.scss';
 import 'swiper/css';
@@ -24,23 +26,35 @@ const queryClient = new QueryClient({
 
 const App = () => {
   	return (
-		<QueryClientProvider client={queryClient}>
-				<Router>
-					<AuthProvider>
-						<div className="app">
+		<div className="app">
+			<Background />
+			<QueryClientProvider client={queryClient}>
+				<AuthProvider>
+						<Router>
 							<Routes>
 								<Route path="/">
 									<Route index element={<Login />} />
-									<Route path="gallery" element={<Gallery />} />
-									<Route path="compliments" element={<Compliments />} />
-									<Route path="story/:storyId" element={<Story />} />
+									<Route path="gallery" element={
+										<RequireAuth>
+											<Gallery />
+										</RequireAuth>
+									}/>
+									<Route path="compliments" element={
+										<RequireAuth>
+											<Compliments />
+										</RequireAuth>
+									}/>
+									<Route path="story/:storyId" element={
+										<RequireAuth>
+											<Story />
+										</RequireAuth>
+									}/>
 								</Route>
 							</Routes>
-							{/* <Background /> */}
-						</div>
-					</AuthProvider>
-				</Router>
-		</QueryClientProvider>
+						</Router>
+				</AuthProvider>
+			</QueryClientProvider>
+		</div>
   	);
 }
 

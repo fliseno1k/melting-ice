@@ -6,7 +6,6 @@ import Header from '../Header/Header';
 
 import s from './Page.module.scss';
 
-
 const Page = ({ children }) => {
     return (
         <Container>

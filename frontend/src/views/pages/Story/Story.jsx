@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { StoriesService } from '../../../services/stories.service';
-import { AuthContext } from '../../../context/AuthProvider';
 
-import { Navigate } from 'react-router-dom';
 import Container from '../../components/Container/Container';
 import Scene from '../../components/Scene/Scene';
 import Sheet from '../../components/Sheet/Sheet';
@@ -17,11 +15,10 @@ import { ReactComponent as ArrowLeft } from '../../../static/icons/arrow_left.sv
 
 
 const Story = () => {
-    const { isAuhthenticated } = useContext(AuthContext);
     const { storyId } = useParams();
     const { data, isFetching } = useQuery('story', () => StoriesService.getStoryById(storyId));
 
-    return isAuhthenticated ? (
+    return (
         <Container>
             <div className={s.story}>
                 {isFetching ? null : (
@@ -40,8 +37,6 @@ const Story = () => {
                 </div>
             </div>
         </Container>
-    ) : (
-        <Navigate to="/" />
     );
 };
 
