@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
+import queryClient from './services/queryClient';
 
 // import Background from './components/shared/Background/Background';
 import Story from './views/pages/Story/Story';
@@ -15,14 +16,6 @@ import RequireAuth from './views/hoc/RequireAuth';
 import './App.scss';
 import 'swiper/css';
 
-
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			refetchOnWindowFocus: false
-		}
-	}
-});
 
 const App = () => {
   	return (

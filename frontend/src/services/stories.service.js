@@ -9,5 +9,11 @@ export const StoriesService = {
     },
     async getStoryById(id) {
         return axiosInstance.get(servicePrefix + `/${id}`);
+    },
+    async likeStory(id) {
+        return axiosInstance.post(servicePrefix + `/${id}/like`);
+    },
+    async viewStory(id) {
+        return axiosInstance.post(servicePrefix + `/${id}/view`);
     }
 };

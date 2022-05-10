@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import cn from 'classnames';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { StoriesService } from '../../../services/stories.service';
 
@@ -17,6 +17,11 @@ import { ReactComponent as ArrowLeft } from '../../../static/icons/arrow_left.sv
 const Story = () => {
     const { storyId } = useParams();
     const { data, isFetching } = useQuery('story', () => StoriesService.getStoryById(storyId));
+    const view = useMutation(() => StoriesService.viewStory(storyId));
+
+    useEffect(() => {
+        view.mutate();
+    }, []);
 
     return (
         <Container>

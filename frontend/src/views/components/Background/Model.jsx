@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { PerspectiveCamera, Center } from '@react-three/drei';
@@ -12,8 +12,8 @@ const Sphere = () => {
 
     useFrame((state) => {
         meshRef.current.material.uniforms.time.value += 1;
-        meshRef.current.material.uniforms.distort.value = 0.8 + Math.sin(state.clock.elapsedTime / 10000);
-        meshRef.current.material.uniforms.radius.value = 1.0 + Math.sin(state.clock.elapsedTime / 1000);
+        meshRef.current.material.uniforms.distort.value = 0.8 + Math.sin(state.clock.elapsedTime / 1000);
+        meshRef.current.material.uniforms.radius.value = 1.0 + Math.sin(state.clock.elapsedTime / 100);
     });
 
     return (

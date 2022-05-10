@@ -12,6 +12,7 @@ const SkeletonCard = ({ index }) => {
                 <span className={s.card__text}>
                     <span className={cn(s.card__text_skeleton, s.card__text_large, "skeleton")}></span>
                     <span className={cn(s.card__text_skeleton, s.card__text_short, "skeleton")}></span>
+                    <span className={cn(s.card__text_skeleton, s.card__text_large, "skeleton")}></span>
                     <span className={cn(s.card__text_skeleton, s.card__text_medium, "skeleton")}></span>
                 </span>
             </div>

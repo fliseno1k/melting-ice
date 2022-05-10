@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const User = require("../models/User");
 const authService = require('../services/auth.service');
 
+const millisecondsInOneDay = 24 * 60 * 1000;
 
 const login = async (req, res, next) => {
     try {
@@ -10,7 +11,7 @@ const login = async (req, res, next) => {
 
         return res
             .status(200)
-            .cookie("refreshToken", tokens.refreshToken, { maxAge: process.env.REFRESH_TOKEN_LIFE, httpOnly: true })
+            .cookie("refreshToken", tokens.refreshToken, { maxAge: millisecondsInOneDay, httpOnly: true })
             .json(tokens);
 
     } catch(e) {
@@ -25,7 +26,7 @@ const refresh = async (req, res, next) => {
 
         return res
             .status(200)
-            .cookie("refreshToken", tokens.refreshToken, { maxAge: process.env.REFRESH_TOKEN_LIFE, httpOnly: true })
+            .cookie("refreshToken", tokens.refreshToken, { maxAge: millisecondsInOneDay, httpOnly: true })
             .json(tokens);
 
     } catch(e) {

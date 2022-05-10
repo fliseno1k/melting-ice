@@ -22,8 +22,8 @@ const createRefreshTokenRecord = async (token, user) => {
     }
 
     const newRefreshToken = new RefreshToken({
-        token: refreshToken, 
-        user: payload.user,
+        token, 
+        user,
     });
     
     return await newRefreshToken.save();

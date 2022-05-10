@@ -3,7 +3,7 @@ const tokenService = require('../services/tokens.service');
 
 const validateAuthorization = (req, res, next) => {
     try {
-        const { authorization } = req.headers.authorization;
+        const authorization = req.headers.authorization;
         if (!authorization) {
             return next(ApiError.UnauthorizedEror());
         }

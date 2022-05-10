@@ -1,5 +1,8 @@
 import React, { useRef } from 'react';
 import cn from 'classnames';
+import { useMutation } from 'react-query';
+import { StoriesService } from '../../../services/stories.service';
+import queryClient from '../../../services/queryClient';
 
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import Section from '../Section/Section';
@@ -13,8 +16,36 @@ import { ReactComponent as Eye } from '../../../static/icons/eye.svg';
 import { ReactComponent as Love } from '../../../static/icons/love.svg';
 
 
+const monthLocales = [
+    "января",
+    "февраля",
+    "мерта",
+    "апреля",
+    "мая",
+    "июня",
+    "июля",
+    "августа",
+    "сентября",
+    "октября",
+    "ноября",
+    "декабря"
+];
+
 const Sheet = ({ data }) => {
     const sheetRef = useRef(null);
+    const like = useMutation(() => StoriesService.likeStory(data.id));
+
+    const formatDate = () => {
+        const date = new Date(data.date);
+        return `${date.getDate()} ${monthLocales[date.getMonth()]} ${date.getFullYear().toString().slice(2)}`;
+    };
+
+    const liked = like.isSuccess;
+    const loading = like.isLoading;
+    const buttonProps = {
+        value: loading ? <span className="loader"></span> : null, 
+        icon: loading ? null : <Heart color={liked ? "red" : "inherit"} /> 
+    };
 
     return (
         <BottomSheet 
@@ -44,11 +75,15 @@ const Sheet = ({ data }) => {
                                 <span>{data.views}</span>
                             </div>
                             <div className={cn(s.sheet__meta__single, s.sheet__meta__single_right)}>
-                                <span>12 февраля 2012</span>
+                                <span>{formatDate()}</span>
                             </div>
                         </div>
                         <div className={s.sheet__like}>
-                            <Button icon={<Heart />} size="short" />
+                            <Button 
+                                {...buttonProps}
+                                size="short" 
+                                onClick={!liked ? like.mutate : () => {}}
+                            />
                         </div>
                     </Section>
                 </div>
