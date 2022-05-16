@@ -1,0 +1,9 @@
+193.104.57.106:443 {
+  tls fliseno1k@gmail.com
+  root * /srv
+  route {
+    reverse_proxy /api* api-server:5000
+    try_files {path} {path}/ /index.html
+    file_server
+  }
+}

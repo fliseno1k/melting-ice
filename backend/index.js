@@ -30,9 +30,12 @@ app.use(cors({
 app.use(errorMiddleware.handleError);
 
 // Database error handler
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db
+    .on('error', console.error.bind(console, 'MongoDB connection error:'))
+    .on('connect', () => console.log.bind(console, 'MongoDB connected'));
 
 // Setup app routes
+app.use(express.static(__dirname + '../frontend/build'));
 app.use('/static', express.static(__dirname + '/public'));
 app.use('/api/compliment', complimentsRouter);
 app.use('/api/story', storyRouter);
