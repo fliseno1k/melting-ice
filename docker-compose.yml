@@ -1,16 +1,16 @@
 version: "3"
 services: 
-  react-app:
-    image: react-app
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - caddy-data:/data
-      - caddy-config:/config
-    networks:
-      - melting-ice
+  # react-app:
+  #   image: react-app
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - caddy-data:/data
+  #     - caddy-config:/config
+  #   networks:
+  #     - melting-ice
 
   api-server: 
     image: api-server
@@ -18,7 +18,7 @@ services:
     ports: 
       - "5000:5000"
     networks:
-      - melting-ice
+      # - melting-ice
       - replica-set
 
   mongo-keys:
@@ -67,8 +67,8 @@ services:
       replica-set:
 
 networks:
-  melting-ice:
-    driver: bridge
+  # melting-ice:
+  #   driver: bridge
   replica-set: 
     driver: bridge
 
@@ -77,7 +77,7 @@ volumes:
   mongo-data:
   mongo-data-1:
   mongo-data-2:
-  caddy-data: 
-    driver: local
-  caddy-config: 
-    driver: local
+  # caddy-data: 
+  #   driver: local
+  # caddy-config: 
+  #   driver: local
