@@ -10,7 +10,7 @@ services:
       - caddy-data:/data
       - caddy-config:/config
     networks:
-      - meltin-ice
+      - melting-ice
 
   api-server: 
     image: api-server
@@ -67,7 +67,7 @@ services:
       replica-set:
 
 networks:
-  melting-app:
+  melting-ice:
     driver: bridge
   replica-set: 
     driver: bridge
