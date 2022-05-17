@@ -14,7 +14,7 @@ services:
 
   api-server: 
     image: api-server
-    restart: unless-stoped
+    restart: unless-stopped
     ports: 
       - "5000:5000"
     networks:
