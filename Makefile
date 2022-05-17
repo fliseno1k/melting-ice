@@ -3,7 +3,7 @@ build-prod:
 	cd backend && $(MAKE) build
 
 run-prod:
-	docker-compose -f docker-compose.yml up -d
+	docker-compose -f docker-compose.yml up
 
 stop: 
 	docker-compose down
