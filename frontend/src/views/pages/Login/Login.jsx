@@ -92,7 +92,7 @@ const Login = () => {
                             <div className={s.login__signinForm__keyWrapper}>
                                 <label 
                                     htmlFor="password" 
-                                    onInput={inputHandler}
+                                    onChange={inputHandler}
                                     onFocusCapture={focusInHandler}
                                     onBlurCapture={focusOutHandler}
                                     className={s.signinForm__keyIndicator}
