@@ -22,14 +22,16 @@
         height: 100%;
         padding: var(--padding-md);
         z-index: var(--modal-z);
-        background: rgba(246,230,228,0.8);
+        background: rgba(246,230,228,0.6);
     }
 
     &__signinForm {
-       display: flex;
+        display: flex;
         align-items: center;
         flex-direction: column;
         width: 100%;
+        max-width: calc(400px - var(--padding-md));
+        margin: var(--padding-md);
         padding: 20px 16px 30px;
         background: var(--card-background);
         border-radius: var(--border-radius-sm);

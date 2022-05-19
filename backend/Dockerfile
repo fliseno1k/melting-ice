@@ -6,9 +6,10 @@ COPY ./package.json ./
 COPY ./package-lock.json ./
 
 RUN npm install
+RUN npm install pm2 -g
 
 COPY . .
 
 EXPOSE 5000
 
-CMD ["node", "index.js"]
+CMD ["pm2-runtime", "index.js"]

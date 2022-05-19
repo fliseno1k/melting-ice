@@ -1,4 +1,4 @@
-const db = require('./db');
+// const db = require('./db');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -18,13 +18,19 @@ const app = express();
 // Load .evn file
 require('dotenv').config();
 
-const whitelist = ['https://melting-ice.vercel.app', 'http://localhost:3000'];
+const whitelist = [
+    'https://melting-ice.vercel.app', 
+    'http://193.104.57.106', 
+    'http://localhost:3000'
+];
+
 const corsOptions = {
     credentials: true,
     origin: (origin, callback) => {
         if (whitelist.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
+            console.log('Cors error');
             callback(new Error('Not allowed by CORS'));
         }
     }
@@ -39,9 +45,9 @@ app.use(cors(corsOptions));
 app.use(errorMiddleware.handleError);
 
 // Database error handler
-db
-    .on('error', console.error.bind(console, 'MongoDB connection error:'))
-    .on('connect', () => console.log.bind(console, 'MongoDB connected'));
+// db
+//     .on('error', console.error.bind(console, 'MongoDB connection error:'))
+//     .on('connect', () => console.log.bind(console, 'MongoDB connected'));
 
 // Setup app routes
 app.use(express.static(__dirname + '../frontend/build'));
@@ -50,10 +56,10 @@ app.use('/api/compliment', complimentsRouter);
 app.use('/api/story', storyRouter);
 app.use('/api/auth', authRouter);
 app.get('/test', (req, res) => {
-    return res.write("Hello");
+    return res.write("Hello from nginx proxy");
 });
 
 // Run server
-app.listen(process.env.PORT, () => {
-    console.log(`Server running on port ${process.env.PORT}`);
+app.listen(process.env.PORT, process.env.HOSTNAME, () => {
+    console.log(`Server running on http://${process.env.HOSTNAME}:${process.env.PORT}`);
 });
