@@ -20,6 +20,8 @@ services:
       - "./nginx/default.conf:/etc/nginx/conf.d/default.conf"
     ports:
       - "80:80"
+    networks:
+      - nginx-network
     
   api-server: 
     image: api-server
@@ -29,6 +31,7 @@ services:
       - "5000:5000"
     networks:
       - replica-set
+      - nginx-network
     depends_on:
       - nginx
 
@@ -78,6 +81,8 @@ services:
       replica-set:
 
 networks:
+  nginx-network:
+    driver: bridge
   replica-set: 
     driver: bridge
 
