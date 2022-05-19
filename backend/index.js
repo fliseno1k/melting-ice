@@ -18,6 +18,7 @@ const app = express();
 // Load .evn file
 require('dotenv').config();
 
+// Cors options 
 const whitelist = [
     'https://melting-ice.vercel.app', 
     'http://193.104.57.106', 
@@ -26,6 +27,14 @@ const whitelist = [
 
 const corsOptions = {
     credentials: true,
+    origin: (origin, callback) => {
+        console.log(origin);
+        if (whitelist.indexOf(origin) !== -1) {
+            return callback(null, true);
+        } 
+
+        return callback(new Error('Not alowed by CORS'));
+    }
 };
 
 // Setup app middleware
