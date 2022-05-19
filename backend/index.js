@@ -60,6 +60,6 @@ app.get('/', (req, res) => {
 });
 
 // Run server
-app.listen(process.env.PORT, process.env.HOSTNAME, () => {
-    console.log(`Server running on http://${process.env.HOSTNAME}:${process.env.PORT}`);
+app.listen(process.env.PORT, 'localhost', () => {
+    console.log(`Server running on http://localhost:${process.env.PORT}`);
 });
