@@ -55,8 +55,8 @@ app.use('/static', express.static(__dirname + '/public'));
 app.use('/api/compliment', complimentsRouter);
 app.use('/api/story', storyRouter);
 app.use('/api/auth', authRouter);
-app.get('/test', (req, res) => {
-    return res.write("Hello from nginx proxy");
+app.get('/', (req, res) => {
+    return res.send("Hello world!");
 });
 
 // Run server
