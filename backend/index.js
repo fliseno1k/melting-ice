@@ -41,7 +41,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(errorMiddleware.handleError);
 
 // Database error handler
@@ -50,16 +50,16 @@ app.use(errorMiddleware.handleError);
 //     .on('connect', () => console.log.bind(console, 'MongoDB connected'));
 
 // Setup app routes
-app.use(express.static(__dirname + '../frontend/build'));
-app.use('/static', express.static(__dirname + '/public'));
-app.use('/api/compliment', complimentsRouter);
-app.use('/api/story', storyRouter);
-app.use('/api/auth', authRouter);
+// app.use(express.static(__dirname + '../frontend/build'));
+// app.use('/static', express.static(__dirname + '/public'));
+// app.use('/api/compliment', complimentsRouter);
+// app.use('/api/story', storyRouter);
+// app.use('/api/auth', authRouter);
 app.get('/', (req, res) => {
     return res.send("Hello world!");
 });
 
 // Run server
-app.listen(process.env.PORT, 'localhost', () => {
-    console.log(`Server running on http://localhost:${process.env.PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port {process.env.PORT}`);
 });
