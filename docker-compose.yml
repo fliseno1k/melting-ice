@@ -12,13 +12,23 @@ services:
   #   networks:
   #     - melting-ice
 
+  nginx: 
+    image: nginx
+    volumes:
+      - "./default.conf:/etc/nginx/conf.d/default.conf"
+    ports:
+      - "80:80"
+    depends_on:
+      - api-server
+    network: 
+      - melting-ice
+
   api-server: 
     image: api-server
     restart: unless-stopped
     ports: 
       - "5000:5000"
     networks:
-      # - melting-ice
       - replica-set
 
   mongo-keys:
@@ -67,8 +77,8 @@ services:
       replica-set:
 
 networks:
-  # melting-ice:
-  #   driver: bridge
+  melting-ice:
+    external: true
   replica-set: 
     driver: bridge
 
