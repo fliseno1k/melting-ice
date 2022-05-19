@@ -17,7 +17,7 @@ services:
     image: nginx
     container_name: nginx
     volumes:
-      - "./default.conf:/etc/nginx/conf.d/default.conf"
+      - "./nginx/default.conf:/etc/nginx/conf.d/default.conf"
     ports:
       - "80:80"
     
@@ -78,8 +78,6 @@ services:
       replica-set:
 
 networks:
-  melting-ice:
-    external: true
   replica-set: 
     driver: bridge
 
