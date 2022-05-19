@@ -26,14 +26,6 @@ const whitelist = [
 
 const corsOptions = {
     credentials: true,
-    origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            console.log('Cors error');
-            callback(new Error('Not allowed by CORS'));
-        }
-    }
 };
 
 // Setup app middleware
