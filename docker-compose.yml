@@ -10,6 +10,7 @@ services:
       - "80:80"
     networks:
       - nginx-network   
+      
   api-server: 
     image: api-server
     restart: unless-stopped
@@ -21,51 +22,34 @@ services:
       - nginx-network
     depends_on:
       - nginx
-  mongo-keys:
-    image: depop/openssl-bats
-    volumes:
-      - mongo-keys:/mongo-conf
-    command: 'bash -c "openssl rand -base64 741 > /mongo-conf/mongodb-keyfile; chmod 600 /mongo-conf/mongodb-keyfile; chown 999 /mongo-conf/mongodb-keyfile"'
+  
   mongo-primary: 
-    image: mongo:latest 
+    image: mongo:latest
     volumes:
-      - mongo-keys:/opt/keyfile
       - mongo-data:/data/db
-    env_file:
-      ./mongod.env
     ports:
       - 27017:27017
-    command: 'mongod --auth --keyFile /opt/keyfile/mongodb-keyfile --replSet replica-set'
-    depends_on:
-        - mongo-keys
+    command: 'mongod --replSet replica-set'
     networks:
       replica-set:
+  
   mongo-worker-1: 
-    image: mongo:latest 
+    image: mongo:latest
     volumes:
-      - mongo-keys:/opt/keyfile
       - mongo-data-1:/data/db
-    env_file:
-      ./mongod.env
     ports:
       - 27018:27017
-    command: 'mongod --auth --keyFile /opt/keyfile/mongodb-keyfile --replSet replica-set'
-    depends_on:
-        - mongo-keys
+    command: 'mongod --replSet replica-set'
     networks:
       replica-set:
+
   mongo-worker-2: 
-    image: mongo:latest 
+    image: mongo:latest
     volumes:
-      - mongo-keys:/opt/keyfile
       - mongo-data-2:/data/db
-    env_file:
-      ./mongod.env
     ports:
       - 27019:27017
-    command: 'mongod --auth --keyFile /opt/keyfile/mongodb-keyfile --replSet replica-set'
-    depends_on:
-        - mongo-keys
+    command: 'mongod --replSet replica-set'
     networks:
       replica-set:
 
