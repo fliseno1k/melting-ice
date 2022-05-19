@@ -12,24 +12,25 @@ services:
   #   networks:
   #     - melting-ice
 
-  nginx: 
+  nginx:
+    restart: always
     image: nginx
+    container_name: nginx
     volumes:
       - "./default.conf:/etc/nginx/conf.d/default.conf"
     ports:
       - "80:80"
-    depends_on:
-      - api-server
-    network: 
-      - melting-ice
-
+    
   api-server: 
     image: api-server
     restart: unless-stopped
+    container_name: api-server
     ports: 
       - "5000:5000"
     networks:
       - replica-set
+    depends_on:
+      - nginx
 
   mongo-keys:
     image: depop/openssl-bats
