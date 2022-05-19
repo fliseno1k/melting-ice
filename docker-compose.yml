@@ -46,6 +46,8 @@ services:
     volumes:
       - mongo-keys:/opt/keyfile
       - mongo-data:/data/db
+    env_file:
+      ./mongo/mongod.env
     ports:
       - 27017:27017
     command: 'mongod --auth --keyFile /opt/keyfile/mongodb-keyfile --replSet replica-set'
@@ -59,6 +61,8 @@ services:
     volumes:
       - mongo-keys:/opt/keyfile
       - mongo-data-1:/data/db
+    env_file:
+      ./mongo/mongod.env
     ports:
       - 27018:27017
     command: 'mongod --auth --keyFile /opt/keyfile/mongodb-keyfile --replSet replica-set'
@@ -72,6 +76,8 @@ services:
     volumes:
       - mongo-keys:/opt/keyfile
       - mongo-data-2:/data/db
+    env_file:
+      ./mongo/mongod.env
     ports:
       - 27019:27017
     command: 'mongod --auth --keyFile /opt/keyfile/mongodb-keyfile --replSet replica-set'
