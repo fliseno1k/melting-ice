@@ -1,5 +1,4 @@
-### First Stage ###
-FROM node:16-alpine3.14 AS builder
+FROM node:16-alpine3.14
 
 WORKDIR /usr/src/app
 
@@ -10,19 +9,4 @@ RUN npm install
 
 COPY . .
 
-ARG BASE_URL
-ENV REACT_APP_BASE_URL=${BASE_URL}
-
 RUN npm run build
-
-### Second Stage ###
-FROM caddy:2.1.1
-
-ARG CADDYFILE
-COPY ${CADDYFILE} /etc/caddy/Caddyfile
-
-COPY --from=builder /usr/src/app/build/ /srv
-
-EXPOSE 80
-
-EXPOSE 443

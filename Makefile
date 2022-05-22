@@ -1,6 +1,5 @@
 build-prod:
-	cd nginx && $(MAKE) build
-	cd backend && $(MAKE) build
+	cd frontend && $(MAKE) build
 
 run-prod:
 	docker-compose -f docker-compose.yml up -d

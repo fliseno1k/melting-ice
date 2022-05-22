@@ -11,15 +11,12 @@ const skeletonCards = [...new Array(5).keys()];
 const Deck = ({ cards, isLoading }) => {
     return (
         <div className={s.deck}>
-            <Swiper
-                slidesPerView="auto"
-                spaceBetween={20}
-            >   
+            <Swiper slidesPerView="auto" spaceBetween={20}>   
                 {isLoading ? (
                     skeletonCards.map(card => (
                         <SwiperSlide key={card}>
                             <SkeletonCard />
-                        </SwiperSlide>                    
+                        </SwiperSlide>                  
                     )
                 )) : (
                     <>
