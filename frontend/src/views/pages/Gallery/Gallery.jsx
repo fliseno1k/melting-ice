@@ -6,7 +6,6 @@ import Deck from '../../components/Deck/Deck';
 import { BaseCard } from '../../components/Card';
 import Page from '../../components/Page/Page';
 import Section from '../../components/Section/Section';
-import RequireAuth from '../../hoc/RequireAuth';
 
 
 const Gallery = () => {
