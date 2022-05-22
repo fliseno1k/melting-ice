@@ -1,5 +1,4 @@
 build-prod:
-	cd frontend && $(MAKE) build
 	cd nginx && $(MAKE) build
 	cd backend && $(MAKE) build
 
