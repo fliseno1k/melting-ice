@@ -3,7 +3,7 @@ import { useMutation } from 'react-query';
 import { axiosInstance } from '../services/config';
 import { AuthService } from '../services/auth.service';
 
-const AuthContext = createContext(null);
+const AuthContext = createContext({ isAuthenticated: false});
 
 export const AuthProvider = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false);
@@ -40,7 +40,6 @@ export const AuthProvider = ({ children }) => {
 
     const checkAuthorizationQuery = useMutation(AuthService.checkAuthorization, {
         onSuccess: (data) => {
-            console.log(data);
             setAuthenticated(true);
         },
         onError: (error) => {
@@ -82,7 +81,7 @@ export const AuthProvider = ({ children }) => {
     const sessionChecking = 
         checkAuthorizationQuery.isLoading || 
         refreshQuery.isLoading || 
-        !checkAuthorizationQuery.data || 
+        !(checkAuthorizationQuery.isError || checkAuthorizationQuery.isSuccess) ||
         !loadingComplete;
     
     return (

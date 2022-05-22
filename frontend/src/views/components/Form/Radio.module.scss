@@ -1,0 +1,52 @@
+.radio {
+    &__group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        font-size: 14px;
+        font-family: "Pacifico", Arial, Helvetica, sans-serif;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+    }
+
+    &__target {
+        width: 100%;
+        display: flex;
+        border-radius: var(--border-radius-normal);
+        border: 2px solid var(--color-white);
+        padding: calc(var(--padding-sm) / 2) var(--padding-sm);
+        box-shadow: var(--shadow);
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    &__option {
+        position: relative;
+        margin: 0 5px;
+    }
+
+    &__value {
+        display: block;
+        padding: calc(var(--padding-sm) / 2) var(--padding-sm);
+        border: 2px solid var(--color-white);
+        box-shadow: var(--shadow);
+        border-radius: var(--border-radius-normal);
+        color: var(--text-secondary);
+        transition: .3s ease;
+    }
+
+    &__input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    &__input:checked + &__value {
+        color: var(--color-white);
+        background: var(--color-heliotrope);
+    }
+}

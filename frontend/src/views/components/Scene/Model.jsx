@@ -8,7 +8,7 @@ import { Center } from '@react-three/drei';
 
 const Model = ({ url }) => {
     const groupRef = useRef(null);
-    const gltf = useLoader(GLTFLoader, `http://localhost:8080/${url}/scene.gltf`);
+    const gltf = useLoader(GLTFLoader, `http://193.104.57.106/${url}/scene.gltf`);
     const [mixer] = useState(() => new THREE.AnimationMixer());
 
     useEffect(() => {

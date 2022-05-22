@@ -7,6 +7,9 @@ export const StoriesService = {
     async getStories() {
         return axiosInstance.get(servicePrefix);
     },
+    async addStory(data) {
+        return axiosInstance.post(servicePrefix, data);
+    },
     async getStoryById(id) {
         return axiosInstance.get(servicePrefix + `/${id}`);
     },

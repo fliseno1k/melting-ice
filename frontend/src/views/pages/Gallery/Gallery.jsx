@@ -8,6 +8,7 @@ import Page from '../../components/Page/Page';
 import Section from '../../components/Section/Section';
 import RequireAuth from '../../hoc/RequireAuth';
 
+
 const Gallery = () => {
     const [loading, setLoading] = useState(true);
     const { data, isFetching, isError } = useQuery('story', () => StoriesService.getStories());
