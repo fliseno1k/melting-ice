@@ -1,26 +1,16 @@
 version: "3"
-services: 
+services:
   nginx:
     restart: always
     image: nginx
     container_name: nginx
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf"
-      - letsencrypt:/etc/letsencrypt
     ports:
       - "80:80"
     networks:
       - nginx-network   
-
-  certbot: 
-    image: certbot/certbot 
-    depends_on:
-      - nginx
-    container_name: certbot 
-    volumes:
-      - letsencrypt:/etc/letsencrypt
-    command: certonly --webroot --webroot-path=/var/www/html --email fliseno1k@gmail.com --agree-tos --no-eef-email --staging -d 193.104.57.106
-
+      
   api-server: 
     image: api-server
     restart: unless-stopped
@@ -74,4 +64,3 @@ volumes:
   mongo-data:
   mongo-data-1:
   mongo-data-2:
-  letsencrypt:
