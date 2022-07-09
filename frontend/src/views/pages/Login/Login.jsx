@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../components/Button/Button';
 import Container from '../../components/Container/Container';
-import Background from '../../components/Background/Background';
 
 import s from './Login.module.scss';
 
@@ -13,12 +12,15 @@ import { ReactComponent as Asterisk } from '../../../static/icons/asterisk.svg';
 
 
 const Login = () => {
-    const navigate = useNavigate();
     const [isOpen, setOpen] = useState(false);
-    const { isAuthenticated, login, isLoading } = useAuth();
-	const inputRef = useRef(null);
-	const [keys, setKeys] = useState(['', '', '', '']);
 	const [focused, setFocused] = useState(null);
+	const [keys, setKeys] = useState(['', '', '', '']);
+
+    const inputRef = useRef(null);
+
+    const navigate = useNavigate();
+    const { isAuthenticated, login, isLoading } = useAuth();
+
 
 	const inputHandler = (e) => {
 		const values = e.target.value.split(''); 
@@ -65,10 +67,17 @@ const Login = () => {
         leave: { opacity: 0 }
     });
 
-	const composeClassName = (key, i) => [
+	const composeClassName = (_, i) => [
 		s.login__signinForm__keyChar,
 		i === focused ? s.login__signinForm__keyChar_focused : ''
 	].join(' ');
+
+
+    useEffect(() => {
+        if (!isOpen) {
+            setKeys(['', '', '', '']);
+        }
+    }, [isOpen]);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -76,10 +85,8 @@ const Login = () => {
         }
     }, [isAuthenticated, navigate]);
 
-
 	return (
 		<Container>
-            <Background scale={1} />
             <div className={s.login}>
                 {overlayProps((props, item) => item ? (
                     <animated.div 
@@ -107,6 +114,8 @@ const Login = () => {
                                         id="password" 
                                         type="password" 
                                         maxLength="4"
+                                        value={keys.join('')}
+                                        onChange={inputHandler}
                                         disabled={isLoading}
                                     ></input>
                                 </label> 

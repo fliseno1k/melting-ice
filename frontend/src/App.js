@@ -23,29 +23,29 @@ const App = () => {
 			<Background />
 			<QueryClientProvider client={queryClient}>
 				<AuthProvider>
-						<Router>
-							<Routes>
-								<Route path="/">
-									<Route index element={<Login />} />
-									<Route 
-										path="gallery" 
-										element={<RequireAuth><Gallery /></RequireAuth>}
-									/>
-									<Route 
-										path="compliments" 
-										element={<RequireAuth><Compliments /></RequireAuth>}
-									/>
-									<Route 
-										path="story/:storyId" 
-										element={<RequireAuth><Story /></RequireAuth>}
-									/>
-									<Route 
-										path="edit"
-										element={<RequireAuth><Edit /></RequireAuth>}
-									/>
-								</Route>
-							</Routes>
-						</Router>
+					<Router>
+						<Routes>
+							<Route path="/">
+								<Route index element={<Login />} />
+								<Route 
+									path="gallery" 
+									element={<RequireAuth><Gallery /></RequireAuth>}
+								/>
+								<Route 
+									path="compliments" 
+									element={<RequireAuth><Compliments /></RequireAuth>}
+								/>
+								<Route 
+									path="story/:storyId" 
+									element={<RequireAuth><Story /></RequireAuth>}
+								/>
+								<Route 
+									path="edit"
+									element={<RequireAuth><Edit /></RequireAuth>}
+								/>
+							</Route>
+						</Routes>
+					</Router>
 				</AuthProvider>
 			</QueryClientProvider>
 		</div>

@@ -41,25 +41,27 @@ const Sphere = () => {
     );
 };
 
-const ModelsGroup = () => (
-    <group>
-        <PerspectiveCamera
-            fov={45}
-            near={1}
-            far={10000}
-            position={[40, -40, 400]}
-            zoom={1}
-            lookAt={[0, 0, 0]}
-            makeDefault
-        />
-        <hemisphereLight 
-            position={[0, 0, 0]}
-            skyColor={0xf11faf}
-            groundColor={0x666666}
-            intensity={0.8}
-        />
-        <Sphere />
-    </group>
-);
+const ModelsGroup = () => {
+    return (
+        <group>
+            <PerspectiveCamera
+                fov={45}
+                near={1}
+                far={10000}
+                position={[40, -40, 400]}
+                zoom={1}
+                lookAt={[0, 0, 0]}
+                makeDefault
+            />
+            <hemisphereLight 
+                position={[0, 0, 0]}
+                skyColor={0xf11faf}
+                groundColor={0x666666}
+                intensity={0.8}
+            />
+            <Sphere />
+        </group>
+    );
+};
 
 export default ModelsGroup;

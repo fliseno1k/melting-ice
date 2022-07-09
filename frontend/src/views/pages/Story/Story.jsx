@@ -12,7 +12,6 @@ import Button from '../../components/Button/Button';
 import s from './Story.module.scss';
 
 import { ReactComponent as ArrowLeft } from '../../../static/icons/arrow_left.svg';
-import RequireAuth from '../../hoc/RequireAuth';
 
 
 const Story = () => {

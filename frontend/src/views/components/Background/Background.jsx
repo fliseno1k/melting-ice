@@ -8,6 +8,6 @@ const Background = React.memo(() => {
             <Models />
         </Canvas>
     );
-});
+}, []);
 
 export default Background;

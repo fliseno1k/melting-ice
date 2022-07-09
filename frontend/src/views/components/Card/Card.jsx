@@ -8,6 +8,7 @@ import s from './Card.module.scss';
 
 const BaseCard = ({ data, index }) => (
     <div data-index={index} className={s.card}>
+        <Link to={`/story/${data.id}`} className={s.card__linkOverlay}></Link>
         <div className={s.card__asset}>
             <img alt="Girl" src={data.imageUrl} />
         </div>
@@ -16,11 +17,6 @@ const BaseCard = ({ data, index }) => (
             <span className={s.card__text}>
                 {data.content}
             </span>
-        </div>
-        <div className={s.card__actions}>
-            <Link to={`/story/${data.id}`} className={cn(s.card__button, s.card__button_large, "button")}>
-                <span className={s.card__button__inner}>Читать...</span>
-            </Link>
         </div>
     </div>
 );

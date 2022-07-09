@@ -1,48 +1,84 @@
 div[data-rsbs-overlay] {
-    border-top-left-radius: calc(var(--padding-md) * 2);
-    border-top-right-radius: calc(var(--padding-md) * 2);
+    max-width: 400px;
+    border-radius: calc(var(--padding-md) * 2);
     box-shadow: var(--shadow) !important;
     background: var(--card-background);
     overflow: hidden;
+    width: calc(100% - var(--padding-md));
+    max-height: calc(100% - var(--padding-md) * 2);
+    margin: 0 auto var(--padding-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow);
 }
 
 div[data-rsbs-header] {
     padding: 0;
-    border-top-left-radius: calc(var(--padding-md) * 2);
-    border-top-right-radius: calc(var(--padding-md) * 2);
     box-shadow: none;
+    z-index: 10;
 }
 
 div[data-rsbs-header]:before {
     z-index: 2;
 }
 
+div[data-rsbs-scroll]:before {
+    content: "";
+    width: 100%;
+    height: 32px;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    background: -webkit-gradient(-180deg ,from(transparent),to(#fff));
+    background: -webkit-linear-gradient(-180deg ,transparent,#fff);
+    background: linear-gradient(-180deg,transparent,#fff);
+} 
+
+div[data-rsbs-scroll]:after {
+    content: "";
+    width: 100%;
+    height: 32px;
+    position: absolute;
+    top: 68px;
+    z-index: 2;
+    background: -webkit-gradient(0deg ,from(transparent),to(#fff));
+    background: -webkit-linear-gradient(0deg ,transparent,#fff);
+    background: linear-gradient(0deg,transparent,#fff);
+} 
+
+
 .sheet {
     &__header {
         position: relative;
         background: var(--color-white);
         border-bottom-left-radius: calc(var(--padding-md) * 2);
-        border-bottom-right-radius: calc(var(--padding-md) * 2);
-        box-shadow: var(--shadow);
-        padding-bottom: 20px;
+        padding: 10px 0 0;
     }
 
     &__content {
         padding: var(--padding-sm) 0;
     }
 
-    &__title {
+    &__wrapper {
         margin-top: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        position: relative;
+        display: flex;
+        & svg {
+            width: 20px;
+            height: 20px;
+            color: inherit;
+        }
+    }
+
+    &__title {
         text-align: left;
         font-size: 16px;
         font-weight: bold;
-    }
-
-    &__like {
-        position: absolute;
-        right: 22px;
-        bottom: -22px;
-        flex: none;
+        margin-left: 10px;
     }
 
     &__description {
@@ -54,36 +90,6 @@ div[data-rsbs-header]:before {
         & p:not(:last-child),
         & span:not(:last-child) {
             margin-bottom: 10px;
-        }
-    }
-
-    &__meta {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        margin-top: 1em;
-
-        &__single {
-            display: inline-flex;
-            align-items: center;
-            font-size: 12px;
-            margin-right: 1em;
-            color: var(--text-secondary);
-
-            &_left {
-                justify-self: flex-start;
-            }
-
-            &_right {
-                margin-left: auto;
-                margin-right: 0;
-            }
-
-            & svg {
-                width: 20px;
-                height: 20px;
-                margin-right: 6px;
-            }
         }
     }
 
