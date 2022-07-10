@@ -22,9 +22,10 @@ const Login = () => {
 
 	const inputHandler = (e) => {
         const value = e.target.value;
-        const focused = value.length;        
+        const focused = value.length; 
+    
 
-        if (focused >= 3) {
+        if (focused > 3) {
             inputRef.current.blur();
         }
 
@@ -34,16 +35,15 @@ const Login = () => {
 
 	const focusInHandler = () => {
         if (isLoading) return;
-        setFocused(focused + 1);
+        setFocused(Math.min(3, keys.length));
 	};
 
 	const focusOutHandler = () => {
-        setFocused(focused - 1);
+        setFocused(-1);
     };
 
     const outsideClickHandler = (e) => {
         if (!isLoading && e.target.className === s.login__overlay) setOpen(false);
-        setFocused(-1);
     };
 
     const handleSubmit = (e) => {
@@ -59,7 +59,7 @@ const Login = () => {
 
 	const composeClassName = (i) => [
 		s.login__signinForm__keyChar,
-		i === focused && s.login__signinForm__keyChar_focused
+		i === focused ? s.login__signinForm__keyChar_focused : ''
 	].join(' ');
 
     useEffect(() => {
@@ -90,7 +90,7 @@ const Login = () => {
                                 >
                                     {[...new Array(4).keys()].map((i) => (
                                         <div key={i} data-index={i} className={composeClassName(i)}>
-                                            {focused === i && <Asterisk />}
+                                            {!!keys[i] && <Asterisk />}
                                         </div>
                                     ))}
                                     <input 
