@@ -23,19 +23,17 @@ const Login = () => {
 
 
 	const inputHandler = (e) => {
-		const values = e.target.value.split(''); 
-		const newKeys = values.concat(['', '', '', ''].slice(values.length))
-		const target = newKeys.findIndex(i => !i);
-		const focused = target === -1 ? 3 : target;
+        const value = e.target.value;
+        const values = Array.from(value);
+        values.concat(new Array(keys.length - values.length).fill(''));
+        const focused = value.length < 4;
 
-		if (!!newKeys[newKeys.length - 1]) {
-			setFocused(null);
+		if (!focused) {
 			inputRef.current.blur();
-		} else {
-			setFocused(focused);
-		}
+        }
 
-		setKeys(newKeys);
+        setFocused(focused);
+		setKeys(values);
 	};
 
 	const focusInHandler = () => {
@@ -105,7 +103,7 @@ const Login = () => {
                                     className={s.signinForm__keyIndicator}
                                 >
                                     {keys.map((key, i) => (
-                                        <div key={i} className={composeClassName(key, i)}>
+                                        <div key={i} data-index={i} className={composeClassName(key, i)}>
                                             {!!key && <Asterisk />}
                                         </div>
                                     ))}
@@ -115,7 +113,7 @@ const Login = () => {
                                         type="password" 
                                         maxLength="4"
                                         value={keys.join('')}
-                                        onChange={inputHandler}
+                                        onInput={inputHandler}
                                         disabled={isLoading}
                                     ></input>
                                 </label> 
