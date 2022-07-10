@@ -12,51 +12,43 @@ import { ReactComponent as Asterisk } from '../../../static/icons/asterisk.svg';
 
 
 const Login = () => {
+    const [focused, setFocused] = useState(-1);
     const [isOpen, setOpen] = useState(false);
-	const [focused, setFocused] = useState(null);
-	const [keys, setKeys] = useState(['', '', '', '']);
-
+	const [keys, setKeys] = useState('');
     const inputRef = useRef(null);
 
     const navigate = useNavigate();
     const { isAuthenticated, login, isLoading } = useAuth();
 
-
 	const inputHandler = (e) => {
         const value = e.target.value;
+        const focused = value.length;        
 
-        const values = [...Array.from(value), ...new Array(4 - value.length).fill('')];
-        const focused = value.length < 4;
-
-		if (!focused) {
-			inputRef.current.blur();
+        if (focused >= 3) {
+            inputRef.current.blur();
         }
 
+		setKeys(value);
         setFocused(focused);
-		setKeys(values);
-	};
+    };
 
 	const focusInHandler = () => {
         if (isLoading) return;
-		const target = keys.findIndex(i => !i);
-		const focused = target === -1 ? 3 : target;
-
-		setFocused(focused);
+        setFocused(focused + 1);
 	};
 
 	const focusOutHandler = () => {
-		setFocused(false);
-	};
+        setFocused(focused - 1);
+    };
 
     const outsideClickHandler = (e) => {
-        if (!isLoading && e.target.className === s.login__overlay) {
-            setOpen(false);
-        }
+        if (!isLoading && e.target.className === s.login__overlay) setOpen(false);
+        setFocused(-1);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        login(keys.join(''));
+        login(keys);
     };
 
     const overlayProps = useTransition(isOpen, {
@@ -65,22 +57,17 @@ const Login = () => {
         leave: { opacity: 0 }
     });
 
-	const composeClassName = (_, i) => [
+	const composeClassName = (i) => [
 		s.login__signinForm__keyChar,
-		i === focused ? s.login__signinForm__keyChar_focused : ''
+		i === focused && s.login__signinForm__keyChar_focused
 	].join(' ');
 
-
     useEffect(() => {
-        if (!isOpen) {
-            setKeys(['', '', '', '']);
-        }
+        if (!isOpen) setKeys('');
     }, [isOpen]);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            navigate("/gallery", { replace: true });
-        }
+        if (isAuthenticated) navigate("/gallery", { replace: true });
     }, [isAuthenticated, navigate]);
 
 	return (
@@ -101,9 +88,9 @@ const Login = () => {
                                     onBlurCapture={focusOutHandler}
                                     className={s.signinForm__keyIndicator}
                                 >
-                                    {keys.map((key, i) => (
-                                        <div key={i} data-index={i} className={composeClassName(key, i)}>
-                                            {!!key && <Asterisk />}
+                                    {[...new Array(4).keys()].map((i) => (
+                                        <div key={i} data-index={i} className={composeClassName(i)}>
+                                            {focused === i && <Asterisk />}
                                         </div>
                                     ))}
                                     <input 
@@ -111,7 +98,7 @@ const Login = () => {
                                         id="password" 
                                         type="password" 
                                         maxLength="4"
-                                        value={keys.join('')}
+                                        value={keys}
                                         onChange={inputHandler}
                                         disabled={isLoading}
                                     ></input>
