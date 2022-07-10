@@ -25,9 +25,7 @@ const Login = () => {
 	const inputHandler = (e) => {
         const value = e.target.value;
 
-        console.log(value, value.length);
-
-        const values = Array.from(value).concat(new Array(4 - value.length).fill(''));
+        const values = [...new Array.from(value), ...new Array(4 - value.length).fill('')];
         const focused = value.length < 4;
 
 		if (!focused) {
@@ -99,7 +97,7 @@ const Login = () => {
                             <div className={s.login__signinForm__keyWrapper}>
                                 <label 
                                     htmlFor="password" 
-                                    onChange={inputHandler}
+                                    onInput={inputHandler}
                                     onFocusCapture={focusInHandler}
                                     onBlurCapture={focusOutHandler}
                                     className={s.signinForm__keyIndicator}
