@@ -24,6 +24,9 @@ const Login = () => {
 
 	const inputHandler = (e) => {
         const value = e.target.value;
+
+        console.log(value, value.length);
+
         const values = Array.from(value).concat(new Array(4 - value.length).fill(''));
         const focused = value.length < 4;
 
