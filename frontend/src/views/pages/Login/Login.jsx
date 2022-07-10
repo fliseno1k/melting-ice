@@ -24,8 +24,7 @@ const Login = () => {
 
 	const inputHandler = (e) => {
         const value = e.target.value;
-        const values = Array.from(value);
-        values.concat(new Array(keys.length - values.length).fill(''));
+        const values = Array.from(value).concat(new Array(4 - value.length).fill(''));
         const focused = value.length < 4;
 
 		if (!focused) {
