@@ -21,7 +21,7 @@ require('dotenv').config();
 // Cors options 
 const whitelist = [
     'https://melting-ice.vercel.app', 
-    'http://193.104.57.106', 
+    'https://93.95.97.69', 
     'http://localhost:3000'
 ];
 
