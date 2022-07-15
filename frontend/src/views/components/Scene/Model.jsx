@@ -16,7 +16,7 @@ const Model = ({ url }) => {
         if (gltf?.animations?.length) {
             void mixer.clipAction(gltf.animations[0], groupRef.current).play();
         }
-    });
+    }, []);
 
     useFrame((state, delta) => {
         mixer.update(delta * 0.2);
