@@ -11,7 +11,7 @@ import { ReactComponent as RightChevron } from '../../../static/icons/chevron_ri
 
 const routes = [
     { path: '/gallery', value: 'Сообщения' },
-    { path: '/compliments', value: 'Комплименты' }
+    { path: '/compliments', value: 'Щепотки добра' }
 ];
 
 const Header = () => {

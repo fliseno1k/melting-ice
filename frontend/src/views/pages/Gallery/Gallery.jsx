@@ -23,7 +23,7 @@ const Gallery = () => {
 
     return (
         <Page>
-            <Section text="Что бы не случилось, помни, я люблю тебя!" shadow="01">
+            <Section text="Просто оставлю это здесь!" shadow="01">
                 <Deck isLoading={loading} cards={cards} />
             </Section>
         </Page>
