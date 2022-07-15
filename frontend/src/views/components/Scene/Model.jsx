@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useFrame, useLoader } from '@react-three/fiber';
 
-import { Center } from '@react-three/drei';
+import { Bounds } from '@react-three/drei';
 
 
 const Model = ({ url }) => {
@@ -13,15 +13,17 @@ const Model = ({ url }) => {
     const [mixer] = useState(() => new THREE.AnimationMixer());
 
     useEffect(() => {
-        void mixer.clipAction(gltf.animations[0], groupRef.current).play();
-    }, []);
+        if (gltf?.animations?.length) {
+            void mixer.clipAction(gltf.animations[0], groupRef.current).play();
+        }
+    });
 
     useFrame((state, delta) => {
         mixer.update(delta * 0.2);
     });
 
     useEffect(() => {
-        if (gltf.animations) {
+        if (gltf?.animations?.length) {
             const mixer = new THREE.AnimationMixer(gltf.scene);
             gltf.scene.animations.forEach(animation => {
                 mixer.clipAction(animation).play();
@@ -31,11 +33,16 @@ const Model = ({ url }) => {
 
     return (
         <Suspense fallback={null}>
-            <Center>
-                <group ref={groupRef} scale={1.2}>
+            <Bounds fit clip observe damping={6} margin={1.2}>
+                <group ref={groupRef}>
                     <primitive object={gltf.scene} />
                 </group>
-            </Center>
+            </Bounds>
+            {/* <Center>
+                <group ref={groupRef}>
+                    <primitive object={gltf.scene} />
+                </group>
+            </Center> */}
         </Suspense>
     );
 };
